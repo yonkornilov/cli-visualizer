@@ -20,6 +20,7 @@
 #include <stdio.h>
 #include <thread>
 #include <numeric>
+#include <iterator>
 
 namespace
 {
@@ -418,7 +419,7 @@ void vis::SpectrumTransformer::maybe_reset_scaling_window(
         auto average_over_reset_window =
             std::accumulate(values->begin(),
                             values->begin() +
-                                static_cast<int64_t>(reset_window_size),
+                                static_cast<ptrdiff_t>(static_cast<int64_t>(reset_window_size)),
                             0.0) /
             reset_window_size;
 
@@ -429,9 +430,9 @@ void vis::SpectrumTransformer::maybe_reset_scaling_window(
         {
             values->erase(values->begin(),
                           values->begin() +
-                              static_cast<int64_t>(
+                              static_cast<ptrdiff_t>(static_cast<int64_t>(
                                   (static_cast<double>(values->size()) *
-                                   k_autoscaling_erase_percent_on_reset)));
+                                   k_autoscaling_erase_percent_on_reset))));
 
             calculate_moving_average_and_std_dev(
                 current_max_height, max_number_of_elements, *values,

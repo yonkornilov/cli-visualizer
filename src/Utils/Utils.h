@@ -330,7 +330,7 @@ class Utils
         auto decimalValue = 0l;
         for (const auto &elem : hex)
         {
-            decimalValue = decimalValue * 16 + hex_to_int(elem);
+            decimalValue = static_cast<long>(decimalValue * 16 + hex_to_int(elem));
         }
 
         return decimalValue;

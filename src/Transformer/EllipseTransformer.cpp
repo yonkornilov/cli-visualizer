@@ -96,7 +96,7 @@ void vis::EllipseTransformer::execute_stereo(pcm_stereo_sample *buffer,
 
         writer->write(top_half_height + static_cast<int32_t>(y),
                       left_half_width + static_cast<int32_t>(x),
-                      m_precomputed_colors[color_index], msg,
+                      m_precomputed_colors[static_cast<size_t>(color_index)], msg,
                       m_settings->get_ellipse_character());
     }
 
